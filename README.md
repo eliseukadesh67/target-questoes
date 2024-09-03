@@ -29,5 +29,5 @@ Opcionalmente é possível utilizar o script ```run.sh``` para executar qualquer
 Exemplo de uso:
 
 ```
-run.sh questao1
+./run.sh questao1
 ```
