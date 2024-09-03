@@ -1,19 +1,22 @@
-const faturamento = require("./faturamento.json")
+const faturamentos = require("./dados.json")
 
-const mes = "abril"
 
-var faturamentosMes = faturamento[mes]
-faturamentosMes = faturamentosMes.filter(valor => valor > 0)
-const menorValor = Math.min(...faturamentosMes)
-const maiorValor = Math.max(...faturamentosMes)
-const somaFaturamentos = faturamentosMes.reduce((acc, valor) => acc + valor, 0)
-const media = somaFaturamentos / faturamentosMes.length;
+let faturamentosFiltered = faturamentos.filter((faturamento) => faturamento.valor > 0)
+const valores  = faturamentosFiltered.map((faturamento) => faturamento.valor)
+const menorValor = Math.min(...valores)
+const maiorValor = Math.max(...valores)
+const somaFaturamentos = valores.reduce((acc, valor) => acc + valor, 0)
+const media = somaFaturamentos / faturamentosFiltered.length
 
-const diasAcimaMedia = faturamentosMes.reduce((acc, valor) => {
-  return valor > media ? acc + 1 : acc;
-}, 0)
+let diasAcimaMedia = 0
 
-console.log(`Menor valor de faturamento do mês de ${mes} : ${menorValor}`)
-console.log(`Maior valor de faturamento do mês de ${mes} : ${maiorValor}`)
+valores.forEach((valor) => {
+  if (valor > media) {
+    diasAcimaMedia++
+  }
+})
+
+console.log(`Menor valor de faturamento do mês: ${menorValor}`)
+console.log(`Maior valor de faturamento do mês: ${maiorValor}`)
 console.log(`Média mensal: ${media}`)
 console.log(`Números de dias no mês em que o valor de faturamento diário foi superior à media mensal: ${diasAcimaMedia}`)
