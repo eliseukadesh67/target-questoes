@@ -1,12 +1,15 @@
 questao=$1
-gcc -o questao5/bin questao5/main.c
+Q5_V2_PATH="questao5_v2"
+Q5_V2_BIN=$Q5_V2_PATH/bin
+Q5_V2_SOURCE=$Q5_V2_PATH/main.c
+gcc -o $Q5_V2_BIN $Q5_V2_SOURCE
 
 CLEAN(){
-  rm -rf questao5/bin
+  rm -rf $Q5_V2_BIN
 }
 
-if [ "$questao" = "questao5_v2" ]; then
-  ./questao5/bin
+if [ "$questao" = "$Q5_V2_PATH" ]; then
+  ./$Q5_V2_BIN
 else
   cd "$questao" && node main.js
 fi
